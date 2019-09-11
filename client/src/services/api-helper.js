@@ -20,17 +20,17 @@ export const showFavesOfUser = async userId => {
   }
 };
 
-// const loginUser = loginData => {
-//   const opts = {
-//     method: "POST",
-//     body: JSON.stringify(loginData),
-//     headers: {
-//       "Content-Type": "application/json"
-//     }
-//   };
-
-//   return fetch(`${baseUrl}/auth/login`, opts).then(resp => resp.json());
-// };
+export const loginUser = async loginData => {
+  //http://localhost:3000/auth/login?username=AlexThomps&password=password
+  try {
+    let resp = await apiClient.post(
+      `/auth/login?username=${loginData.username}&password=${loginData.password}`
+    );
+    return resp;
+  } catch (e) {
+    throw e;
+  }
+};
 
 export const getProfile = async () => {
   try {
