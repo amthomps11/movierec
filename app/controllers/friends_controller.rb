@@ -1,5 +1,5 @@
 class FriendsController < ApplicationController
-  
+    
     # before_action :authorize_request, except: :create
     def index
         @friend = Friend.all()
