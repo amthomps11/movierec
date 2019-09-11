@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+user1 = User.create(username: "AlexThomps",password:"password",email:"alex@mail.com")
+user2 = User.create(username: "ChrisThomps",password:"password",email:"chris@mail.com")
+
+
+movie1 = Movie.create(title: "Back To The future")
+movie2 = Movie.create(title: "Forest Gump")
+
+Friend.create(user1Id: 1,user2Id: 2, confirmed:true )
+
+
+user1.movies.push(movie1)
+user2.movies.push(movie2)
