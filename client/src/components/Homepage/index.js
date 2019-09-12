@@ -1,22 +1,37 @@
 import React from "react";
 import { showFavesOfUser } from "../../services/api-helper";
+import Moviecard from "../Moviecard/Moviecard";
 
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { faves: [] };
   }
 
   componentDidMount = async () => {
     await this.getFaves();
   };
 
-  getFaves = () => {
-    showFavesOfUser(localStorage.getItem("userId"));
+  getFaves = async () => {
+    let faves = await showFavesOfUser(localStorage.getItem("userId"));
+    this.setState({ faves });
+  };
+
+  renderFaves = () => {
+    return this.state.faves.map(movie => {
+      return (
+        <Moviecard
+          key={movie.id}
+          title={movie.title}
+          description={movie.description}
+          imgUrl={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+        ></Moviecard>
+      );
+    });
   };
 
   render() {
-    return <div>HomePage</div>;
+    return <div>{this.renderFaves()}</div>;
   }
 }
 

@@ -1,8 +1,12 @@
 import React from "react";
 import axios from "axios";
+import Moviecard from "../Moviecard/Moviecard";
 require("dotenv").config();
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+//components
+
+// const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = "2aee743ec443e651b7c676b14cc46d1c";
 
 class Searchpage extends React.Component {
   constructor(props) {
@@ -21,7 +25,7 @@ class Searchpage extends React.Component {
   };
 
   componentDidMount = async () => {
-    await this.fetchData();
+    // await this.fetchData();
   };
 
   handleInput = e => {
@@ -36,8 +40,15 @@ class Searchpage extends React.Component {
   };
 
   renderMovies = e => {
-    return this.state.movies.map(movie => {
-      return <div>{movie.title}</div>;
+    return this.state.movies.map((movie, index) => {
+      return (
+        <Moviecard
+          key={index}
+          title={movie.title}
+          description={movie.overview}
+          imgUrl={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+        ></Moviecard>
+      );
     });
   };
 
@@ -47,7 +58,7 @@ class Searchpage extends React.Component {
         <input onChange={this.handleInput}></input>
         <button onClick={this.handleSearch}>Search</button>
         Movies
-        {this.state.movies != [] ? this.renderMovies() : null}
+        {this.state.movies !== [] ? this.renderMovies() : null}
       </div>
     );
   }
