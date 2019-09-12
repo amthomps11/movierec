@@ -9,3 +9,64 @@ const apiClient = axios.create({
     Authorization: `Bearer ${JWT_TOKEN}`
   }
 });
+
+export const showFavesOfUser = async userId => {
+  try {
+    const resp = await apiClient.get(`/users/${userId}`);
+    return resp.data.movies;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const loginUser = async loginData => {
+  try {
+    let resp = await apiClient.post(
+      `/auth/login?username=${loginData.username}&password=${loginData.password}`
+    );
+    return resp;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const createMovie = async movieData => {
+  try {
+    const response = await apiClient.post("/movies", movieData);
+    return response.data;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getMovieId = async title => {
+  try {
+    const response = await apiClient.get(`/movies/title/?title=${title}`);
+    return response.data.id;
+  } catch (e) {
+    return "sorry";
+  }
+};
+
+export const likeMovie = async movieId => {
+  try {
+    let userId = localStorage.getItem("userId");
+    const resp = await apiClient.get(`/users/${userId}`);
+    console.log(resp.data);
+    let movies = resp.data.movies;
+    let movieIn = false;
+    movies.forEach(movie => {
+      if (movie.id === movieId) {
+        movieIn = true;
+      }
+    });
+    if (!movieIn) {
+      const response = await apiClient.post(`/likes/${userId}/${movieId}`);
+      return response;
+    } else {
+      console.log("you already like that movie!");
+    }
+  } catch (e) {
+    throw e;
+  }
+};

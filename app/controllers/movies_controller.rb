@@ -11,8 +11,7 @@ class MoviesController < ApplicationController
         render json: @movie
     end
 
-    def create
-        
+    def create 
         @movie = Movie.new(movie_params)
         puts movie_params
         if @movie.save
@@ -22,6 +21,16 @@ class MoviesController < ApplicationController
         end
 
     end
+
+
+    def title
+        @movie = Movie.find_by_title(params[:title])
+        if @movie.save
+            render json: @movie, status: :ok
+          else
+            render json: @movie.errors, status: :unprocessable_entity
+        end     
+    end   
 
     private
 
