@@ -44,7 +44,7 @@ export const getMovieId = async title => {
     const response = await apiClient.get(`/movies/title/?title=${title}`);
     return response.data.id;
   } catch (e) {
-    return "sorry";
+    return "nomovie";
   }
 };
 
