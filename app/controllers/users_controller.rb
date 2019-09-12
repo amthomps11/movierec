@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     
     # before_action :authorize_request, except: :create
+    
     def index
         @user = User.all()
         render json: @user, include: :movies
