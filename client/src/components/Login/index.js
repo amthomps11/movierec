@@ -18,8 +18,11 @@ class Login extends React.Component {
   handleLogin = async e => {
     e.preventDefault();
     const userData = await loginUser(this.state.authData);
+    console.log(userData);
     decode(userData.data.token);
     localStorage.setItem("jwt", userData.data.token);
+    localStorage.setItem("userId", userData.data.userId);
+
     this.handleLoginButton();
   };
 

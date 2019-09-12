@@ -21,7 +21,6 @@ export const showFavesOfUser = async userId => {
 };
 
 export const loginUser = async loginData => {
-  //http://localhost:3000/auth/login?username=AlexThomps&password=password
   try {
     let resp = await apiClient.post(
       `/auth/login?username=${loginData.username}&password=${loginData.password}`

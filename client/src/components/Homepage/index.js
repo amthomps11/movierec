@@ -12,7 +12,7 @@ class Homepage extends React.Component {
   };
 
   getFaves = () => {
-    showFavesOfUser(1);
+    showFavesOfUser(localStorage.getItem("userId"));
   };
 
   render() {
