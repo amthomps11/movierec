@@ -44,7 +44,7 @@ export const getMovieId = async title => {
     const response = await apiClient.get(`/movies/title/?title=${title}`);
     return response.data.id;
   } catch (e) {
-    return "sorry";
+    return "nomovie";
   }
 };
 
@@ -52,7 +52,6 @@ export const likeMovie = async movieId => {
   try {
     let userId = localStorage.getItem("userId");
     const resp = await apiClient.get(`/users/${userId}`);
-    console.log(resp.data);
     let movies = resp.data.movies;
     let movieIn = false;
     movies.forEach(movie => {
@@ -66,6 +65,54 @@ export const likeMovie = async movieId => {
     } else {
       console.log("you already like that movie!");
     }
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const writeComment = async commentData => {
+  try {
+    commentData.user_id = localStorage.getItem("userId");
+    const response = await apiClient.post("/comments", {
+      comment: commentData
+    });
+    return response.data;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getComments = async movie_id => {
+  try {
+    let user_id = localStorage.getItem("userId");
+    const resp = await apiClient.get(
+      `/movies/comments?movie_id=${movie_id}&user_id=${user_id}`
+    );
+    return resp.data;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getComment = async (movie_id, comment_id) => {
+  try {
+    let user_id = localStorage.getItem("userId");
+    const resp = await apiClient.get(
+      `/movies/comment?movie_id=${movie_id}&user_id=${user_id}&comment_id=${comment_id}`
+    );
+    return resp.data;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const deleteComment = async (movie_id, comment_id) => {
+  try {
+    let user_id = localStorage.getItem("userId");
+    await apiClient.delete(
+      `/movies/comment_destroy?movie_id=${movie_id}&user_id=${user_id}&comment_id=${comment_id}`
+    );
+    return "comment Deleted";
   } catch (e) {
     throw e;
   }

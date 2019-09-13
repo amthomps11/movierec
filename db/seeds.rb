@@ -14,6 +14,11 @@ movie2 = Movie.create(title: "Forest Gump")
 
 Friend.create(user1Id: 1,user2Id: 2, confirmed:true )
 
+comment1 = Comment.create(body:"I llove this movie!")
+
+user1.comments.push(comment1)
+movie1.comments.push(comment1)
+
 
 user1.movies.push(movie1)
 user2.movies.push(movie2)
