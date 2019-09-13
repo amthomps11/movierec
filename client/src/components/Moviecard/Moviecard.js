@@ -23,6 +23,7 @@ class Moviecard extends React.Component {
         imgUrl: this.props.imgUrl
       }
     };
+
     id = await getMovieId(this.props.title);
     if (id === "nomovie") {
       const newMovie = await createMovie(movieObj);

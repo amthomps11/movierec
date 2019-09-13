@@ -30,7 +30,10 @@ class MoviesController < ApplicationController
           else
             render json: @movie.errors, status: :unprocessable_entity
         end     
-    end   
+    end
+
+   
+
 
     private
 

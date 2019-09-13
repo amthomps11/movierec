@@ -81,3 +81,12 @@ export const writeComment = async commentData => {
     throw e;
   }
 };
+
+export const getComments = async (user_id, movie_id) => {
+  try {
+    const resp = await apiClient.get(`/comments`);
+    return resp.data;
+  } catch (e) {
+    throw e;
+  }
+};
