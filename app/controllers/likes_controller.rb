@@ -7,4 +7,7 @@ class LikesController < ApplicationController
         render json: @user, include: :movies
     end
 
+    
+
+
 end
