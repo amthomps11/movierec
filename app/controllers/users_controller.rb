@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     
     def index
         @user = User.all()
-        render json: @user, include: :movies
+        render json: @user, include: [:movies]
       end
     
     def show

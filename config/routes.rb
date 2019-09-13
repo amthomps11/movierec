@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :users
   resources :movies
   resources :friends
-  
+  resources :comments
+
 end

@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
     # before_action :authorize_request, except: :create
     def index
         @movie = Movie.all()
-        render json: @movie
+        render json: @movie, include: :comments
       end
     
     def show

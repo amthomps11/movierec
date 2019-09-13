@@ -52,7 +52,6 @@ export const likeMovie = async movieId => {
   try {
     let userId = localStorage.getItem("userId");
     const resp = await apiClient.get(`/users/${userId}`);
-    console.log(resp.data);
     let movies = resp.data.movies;
     let movieIn = false;
     movies.forEach(movie => {
@@ -66,6 +65,18 @@ export const likeMovie = async movieId => {
     } else {
       console.log("you already like that movie!");
     }
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const writeComment = async commentData => {
+  try {
+    commentData.user_id = localStorage.getItem("userId");
+    const response = await apiClient.post("/comments", {
+      comment: commentData
+    });
+    return response.data;
   } catch (e) {
     throw e;
   }

@@ -22,8 +22,10 @@ class Homepage extends React.Component {
       return (
         <Moviecard
           key={movie.id}
+          movie_id={movie.id}
           title={movie.title}
           description={movie.description}
+          comments={movie.comments}
           imgUrl={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
         ></Moviecard>
       );
