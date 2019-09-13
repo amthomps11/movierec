@@ -30,6 +30,16 @@ export const loginUser = async loginData => {
   }
 };
 
+export const createUser = async userData => {
+  try {
+    let resp = await apiClient.post(`/users`, userData);
+    console.log(`user with ${userData} created`);
+    return resp;
+  } catch (e) {
+    throw e;
+  }
+};
+
 export const createMovie = async movieData => {
   try {
     const response = await apiClient.post("/movies", movieData);
