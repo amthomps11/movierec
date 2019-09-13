@@ -33,9 +33,20 @@ class MoviesController < ApplicationController
         end     
     end
 
+    def comment
+        @comment = Comment.where("user_id = #{params[:user_id]} AND movie_id=#{params[:movie_id]} AND id=#{params[:comment_id]}", params[:user_id],params[:movie_id],params[:comment_id])
+        render json: @comment, status: :ok
+
+    end
+
     def comments
         @comments = Comment.where("user_id = #{params[:user_id]} AND movie_id=#{params[:movie_id]}", params[:user_id],params[:movie_id])
         render json: @comments, status: :ok
+    end
+
+    def comment_destroy
+        @comment = Comment.where("user_id = #{params[:user_id]} AND movie_id=#{params[:movie_id]} AND id=#{params[:comment_id]}", params[:user_id],params[:movie_id],params[:comment_id])
+        @comment.destroy(params[:comment_id])
     end
 
 

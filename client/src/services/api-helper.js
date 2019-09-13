@@ -93,3 +93,27 @@ export const getComments = async movie_id => {
     throw e;
   }
 };
+
+export const getComment = async (movie_id, comment_id) => {
+  try {
+    let user_id = localStorage.getItem("userId");
+    const resp = await apiClient.get(
+      `/movies/comment?movie_id=${movie_id}&user_id=${user_id}&comment_id=${comment_id}`
+    );
+    return resp.data;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const deleteComment = async (movie_id, comment_id) => {
+  try {
+    let user_id = localStorage.getItem("userId");
+    await apiClient.delete(
+      `/movies/comment_destroy?movie_id=${movie_id}&user_id=${user_id}&comment_id=${comment_id}`
+    );
+    return "comment Deleted";
+  } catch (e) {
+    throw e;
+  }
+};
