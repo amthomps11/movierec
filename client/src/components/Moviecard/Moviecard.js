@@ -3,7 +3,8 @@ import {
   createMovie,
   likeMovie,
   getMovieId,
-  writeComment
+  writeComment,
+  getComments
 } from "../../services/api-helper";
 import CommentCard from "../CommentCard";
 
@@ -12,6 +13,11 @@ class Moviecard extends React.Component {
     super(props);
     this.state = { input: "", comments: [] };
   }
+
+  componentDidMount = async () => {
+    let comments = await getComments(this.props.movie_id);
+    this.setState({ comments });
+  };
 
   handleLike = async e => {
     e.preventDefault();
@@ -46,6 +52,8 @@ class Moviecard extends React.Component {
       movie_id: this.props.movie_id.toString()
     };
     await writeComment(commentObj);
+    let comments = await getComments(this.props.movie_id);
+    this.setState({ comments });
   };
 
   render() {

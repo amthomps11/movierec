@@ -82,9 +82,12 @@ export const writeComment = async commentData => {
   }
 };
 
-export const getComments = async (user_id, movie_id) => {
+export const getComments = async movie_id => {
   try {
-    const resp = await apiClient.get(`/comments`);
+    let user_id = localStorage.getItem("userId");
+    const resp = await apiClient.get(
+      `/movies/comments?movie_id=${movie_id}&user_id=${user_id}`
+    );
     return resp.data;
   } catch (e) {
     throw e;

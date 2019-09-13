@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
     # before_action :authorize_request, except: :create
     def index
         @movie = Movie.all()
-        render json: @movie, include: :comments
+        render json: @movie
       end
     
     def show
@@ -25,12 +25,19 @@ class MoviesController < ApplicationController
 
     def title
         @movie = Movie.find_by_title(params[:title])
+        
         if @movie.save
             render json: @movie, status: :ok
           else
             render json: @movie.errors, status: :unprocessable_entity
         end     
     end
+
+    def comments
+        @comments = Comment.where("user_id = #{params[:user_id]} AND movie_id=#{params[:movie_id]}", params[:user_id],params[:movie_id])
+        render json: @comments, status: :ok
+    end
+
 
    
 

@@ -7,10 +7,7 @@ class LikesController < ApplicationController
         render json: @user, include: :movies
     end
 
-    def doeslike
-        
-        
-    end
+    
 
 
 end

@@ -6,9 +6,14 @@ class CommentCard extends React.Component {
     this.state = { comments: [] };
   }
 
+  componentDidMount() {
+    this.setState({ comments: this.props.comments });
+  }
+
   renderComments = () => {
-    return this.state.comments.map(comment => {
-      return <div>{comment}</div>;
+    return this.props.comments.map(comment => {
+      console.log(comment);
+      return <div>{comment.body}</div>;
     });
   };
 
