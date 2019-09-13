@@ -3,10 +3,7 @@ import {
   createMovie,
   likeMovie,
   getMovieId,
-  writeComment,
-  getComments,
-  deleteComment,
-  getComment
+  getComments
 } from "../../services/api-helper";
 import CommentCard from "../CommentCard";
 
@@ -46,34 +43,12 @@ class Moviecard extends React.Component {
     this.setState({ input: value });
   };
 
-  handleComment = async e => {
-    e.preventDefault();
-
-    let commentObj = {
-      body: this.state.input,
-      movie_id: this.props.movie_id.toString()
-    };
-    await writeComment(commentObj);
-    let comments = await getComments(this.props.movie_id);
-    this.setState({ comments });
-  };
-
-  handleDeleteComment = async e => {
-    e.preventDefault();
-    // await getComment(this.props.movie_id);
-    // await deleteComment(this.props.movie_id);
-  };
-
   render() {
     return (
       <div>
         <div>{this.props.title}</div>
         <div>{this.props.description}</div>
         <button onClick={this.handleLike}>Like</button>
-        <form onSubmit={this.handleComment}>
-          <input onChange={this.handleInput}></input>
-          <button>Write Comment</button>
-        </form>
         <CommentCard
           movie_id={this.props.movie_id}
           handleDelete={this.handleDeleteComment}

@@ -1,26 +1,50 @@
 import React from "react";
-import { getComment, deleteComment } from "../../services/api-helper";
+import {
+  deleteComment,
+  getComments,
+  writeComment
+} from "../../services/api-helper";
 
 class CommentCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { comments: [] };
+    this.state = { input: "", comments: [] };
   }
 
-  componentDidMount() {
-    this.setState({ comments: this.props.comments });
-  }
+  componentDidMount = async () => {
+    let comments = await getComments(this.props.movie_id);
+    this.setState({ comments });
+  };
+
+  handleInput = async e => {
+    e.preventDefault();
+    let { value } = e.target;
+    this.setState({ input: value });
+  };
+
+  handleComment = async e => {
+    e.preventDefault();
+
+    let commentObj = {
+      body: this.state.input,
+      movie_id: this.props.movie_id.toString()
+    };
+    await writeComment(commentObj);
+    let comments = await getComments(this.props.movie_id);
+    this.setState({ comments });
+  };
 
   handleDeleteComment = async e => {
     let id = parseInt(e.target.parentElement.getAttribute("id"));
     let movie_id = parseInt(e.target.parentElement.getAttribute("movie_id"));
 
-    console.log(await getComment(movie_id, id));
-    console.log(await deleteComment(movie_id, id));
+    await deleteComment(movie_id, id);
+    let comments = await getComments(this.props.movie_id);
+    this.setState({ comments });
   };
 
   renderComments = () => {
-    return this.props.comments.map(comment => {
+    return this.state.comments.map(comment => {
       return (
         <div key={comment.id} id={comment.id} movie_id={this.props.movie_id}>
           {comment.body}
@@ -32,7 +56,15 @@ class CommentCard extends React.Component {
   };
 
   render() {
-    return <div>{this.renderComments()}</div>;
+    return (
+      <div>
+        <form onSubmit={this.handleComment}>
+          <input onChange={this.handleInput}></input>
+          <button>Write Comment</button>
+        </form>
+        {this.renderComments()}
+      </div>
+    );
   }
 }
 
