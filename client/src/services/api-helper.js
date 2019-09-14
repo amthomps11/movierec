@@ -127,3 +127,16 @@ export const deleteComment = async (movie_id, comment_id) => {
     throw e;
   }
 };
+
+export const updateComment = async (movie_id, comment_id) => {
+  try {
+    let user_id = localStorage.getItem("userId");
+    await apiClient.put(
+      `/movies/comment_update?movie_id=${movie_id}&user_id=${user_id}&comment_id=${comment_id}`,
+      { comment: { body: "greatMovie" } }
+    );
+    return "comment edited";
+  } catch (e) {
+    throw e;
+  }
+};

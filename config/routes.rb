@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   
   delete "/movies/comment_destroy", to: "movies#comment_destroy" 
+
+  put "/movies/comment_update", to: "movies#comment_update"
   
   resources :users
   resources :movies

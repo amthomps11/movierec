@@ -2,7 +2,8 @@ import React from "react";
 import {
   deleteComment,
   getComments,
-  writeComment
+  writeComment,
+  updateComment
 } from "../../services/api-helper";
 
 class CommentCard extends React.Component {
@@ -43,12 +44,21 @@ class CommentCard extends React.Component {
     this.setState({ comments });
   };
 
+  handleEditcomment = async e => {
+    let id = parseInt(e.target.parentElement.getAttribute("id"));
+    let movie_id = parseInt(e.target.parentElement.getAttribute("movie_id"));
+
+    await updateComment(movie_id, id);
+    let comments = await getComments(this.props.movie_id);
+    this.setState({ comments });
+  };
+
   renderComments = () => {
     return this.state.comments.map(comment => {
       return (
         <div key={comment.id} id={comment.id} movie_id={this.props.movie_id}>
           {comment.body}
-          <button>Edit Comment</button>
+          <button onClick={this.handleEditcomment}>Edit Comment</button>
           <button onClick={this.handleDeleteComment}>Delete Comment</button>
         </div>
       );

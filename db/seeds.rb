@@ -7,17 +7,20 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 user1 = User.create(username: "AlexThomps",password:"password",email:"alex@mail.com")
 user2 = User.create(username: "ChrisThomps",password:"password",email:"chris@mail.com")
+user3 = User.create(username: "MissyThomps",password:"password",email:"missy@mail.com")
+user4 = User.create(username: "DadThomps",password:"password",email:"dad@mail.com")
 
 
-movie1 = Movie.create(title: "Back To The future")
-movie2 = Movie.create(title: "Forest Gump")
+movie1 = Movie.create(title: "Back To The future",description:"marty goes back to the future")
+movie2 = Movie.create(title: "Forest Gump", description:"Forrest gump rusn")
 
 Friend.create(user1Id: 1,user2Id: 2, confirmed:true )
+Friend.create(user1Id: 1,user2Id: 3, confirmed:true )
+Friend.create(user1Id: 1,user2Id: 4, confirmed:true )
+Friend.create(user1Id: 2,user2Id: 3, confirmed:true )
 
-comment1 = Comment.create(body:"I llove this movie!")
 
-user1.comments.push(comment1)
-movie1.comments.push(comment1)
+
 
 
 user1.movies.push(movie1)
