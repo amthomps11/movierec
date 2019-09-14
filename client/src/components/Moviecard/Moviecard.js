@@ -15,10 +15,6 @@ class Moviecard extends React.Component {
   }
 
   componentDidMount = async () => {
-    console.log(`moviecarduserid:${this.props.user_id}`);
-    console.log(`moviecardmovieid:${this.props.movie_id}`);
-    console.log(this.props.showComments);
-
     if (this.props.showComments) {
       let comments = await getComments(this.props.user_id, this.props.movie_id);
       await this.setState({ comments });
@@ -46,7 +42,7 @@ class Moviecard extends React.Component {
 
   handleUnlike = async e => {
     e.preventDefault();
-    unlikeMovie(this.props.movie_id);
+    await unlikeMovie(this.props.movie_id);
     this.props.resetFaves();
   };
 

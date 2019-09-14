@@ -82,6 +82,9 @@ export const likeMovie = async movieId => {
 export const unlikeMovie = async movieId => {
   try {
     let userId = localStorage.getItem("userId");
+    console.log(`movieid${movieId}`);
+    console.log(`userid${userId}`);
+
     const response = await apiClient.put(
       `/users/unlike?id=${userId}&movie_id=${movieId}`
     );
@@ -104,9 +107,6 @@ export const writeComment = async commentData => {
 };
 
 export const getComments = async (user_id, movie_id) => {
-  console.log(`apiuserid${user_id}`);
-  console.log(`apimovieid${movie_id}`);
-  let tempId = localStorage.getItem("userId");
   try {
     const resp = await apiClient.get(
       `/movies/comments?movie_id=${movie_id}&user_id=${user_id}`

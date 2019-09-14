@@ -13,9 +13,6 @@ class CommentCard extends React.Component {
   }
 
   componentDidMount = async () => {
-    console.log(`commentcarduserid:${this.props.user_id}`);
-    console.log(`commentcardmovieid:${this.props.movie_id}`);
-    console.log(this.props.showComments);
     if (this.props.showComments) {
       let comments = await getComments(this.props.user_id, this.props.movie_id);
       this.setState({ comments });

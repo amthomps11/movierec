@@ -21,7 +21,7 @@ class NavBar extends React.Component {
         <ul>
           <NavLink to="/home">Dashboard</NavLink>
           <NavLink to="/login">Login</NavLink>
-          <NavLink to="/register">register</NavLink>
+          <NavLink to="/register">Register</NavLink>
           <NavLink to="/search">Search</NavLink>
           <NavLink to="/users">Users</NavLink>
         </ul>

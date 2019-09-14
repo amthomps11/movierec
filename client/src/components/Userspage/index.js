@@ -21,11 +21,9 @@ class Userspage extends React.Component {
   renderUsers = () => {
     return this.state.users.map(user => {
       return (
-        <>
-          <div key={user.id}>
-            <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
-          </div>
-        </>
+        <div key={user.id}>
+          <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
+        </div>
       );
     });
   };
