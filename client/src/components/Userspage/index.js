@@ -1,7 +1,6 @@
 import React from "react";
-import { Route, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getUsers } from "../../services/api-helper";
-import Homepage from "../Homepage";
 
 class Userspage extends React.Component {
   constructor(props) {
@@ -23,9 +22,9 @@ class Userspage extends React.Component {
     return this.state.users.map(user => {
       return (
         <>
-          <NavLink to="home">{user.username}</NavLink>
-
-          <Route path="/home" />
+          <div key={user.id}>
+            <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
+          </div>
         </>
       );
     });

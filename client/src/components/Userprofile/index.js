@@ -2,7 +2,7 @@ import React from "react";
 import { showFavesOfUser } from "../../services/api-helper";
 import Moviecard from "../Moviecard/Moviecard";
 
-class Homepage extends React.Component {
+class Userprofile extends React.Component {
   constructor(props) {
     super(props);
     this.state = { faves: [] };
@@ -13,7 +13,7 @@ class Homepage extends React.Component {
   };
 
   getFaves = async () => {
-    let faves = await showFavesOfUser(localStorage.getItem("userId"));
+    let faves = await showFavesOfUser(this.props.id);
     this.setState({ faves });
   };
 
@@ -26,7 +26,7 @@ class Homepage extends React.Component {
           title={movie.title}
           description={movie.description}
           imgUrl={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
-          isAuthed={true}
+          isAuthed={false}
         ></Moviecard>
       );
     });
@@ -37,4 +37,4 @@ class Homepage extends React.Component {
   }
 }
 
-export default Homepage;
+export default Userprofile;
