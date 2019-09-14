@@ -1,8 +1,6 @@
 import React from "react";
-import { Route, Router, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getUsers } from "../../services/api-helper";
-import Userprofile from "../Userspage";
-import Homepage from "../Homepage";
 
 class Userspage extends React.Component {
   constructor(props) {
@@ -32,7 +30,6 @@ class Userspage extends React.Component {
     });
   };
   render() {
-    console.log(this.props);
     return <div>{this.renderUsers()}</div>;
   }
 }
