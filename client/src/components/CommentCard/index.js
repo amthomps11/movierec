@@ -58,8 +58,12 @@ class CommentCard extends React.Component {
       return (
         <div key={comment.id} id={comment.id} movie_id={this.props.movie_id}>
           {comment.body}
-          <button onClick={this.handleEditcomment}>Edit Comment</button>
-          <button onClick={this.handleDeleteComment}>Delete Comment</button>
+          {this.props.isAuthed ? (
+            <button onClick={this.handleEditcomment}>Edit Comment</button>
+          ) : null}
+          {this.props.isAuthed ? (
+            <button onClick={this.handleDeleteComment}>Delete Comment</button>
+          ) : null}
         </div>
       );
     });
@@ -68,10 +72,12 @@ class CommentCard extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleComment}>
-          <input onChange={this.handleInput}></input>
-          <button>Write Comment</button>
-        </form>
+        {this.props.isAuthed ? (
+          <form onSubmit={this.handleComment}>
+            <input onChange={this.handleInput}></input>
+            <button>Write Comment</button>
+          </form>
+        ) : null}
         {this.renderComments()}
       </div>
     );

@@ -53,6 +53,7 @@ class Moviecard extends React.Component {
           movie_id={this.props.movie_id}
           handleDelete={this.handleDeleteComment}
           comments={this.state.comments}
+          isAuthed={this.props.isAuthed}
         ></CommentCard>
       </div>
     );

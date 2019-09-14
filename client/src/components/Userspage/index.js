@@ -33,18 +33,7 @@ class Userspage extends React.Component {
   };
   render() {
     console.log(this.props);
-    return (
-      <div>
-        {this.renderUsers()}
-        <Route
-          exact
-          path="/users/:id"
-          render={props => (
-            <Userprofile {...props} id={props.match.params.id} />
-          )}
-        />
-      </div>
-    );
+    return <div>{this.renderUsers()}</div>;
   }
 }
 
