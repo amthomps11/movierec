@@ -143,7 +143,7 @@ export const updateComment = async (movie_id, comment_id) => {
 
 export const getUsers = async () => {
   try {
-    let user_id = localStorage.getItem("userId");
+    // let user_id = localStorage.getItem("userId");
     let users = await apiClient.get(`/users`);
     return users;
   } catch (e) {

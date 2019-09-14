@@ -1,6 +1,7 @@
 import React from "react";
-import { Route, NavLink } from "react-router-dom";
+import { Route, Router, NavLink } from "react-router-dom";
 import { getUsers } from "../../services/api-helper";
+import Userprofile from "../Userspage";
 import Homepage from "../Homepage";
 
 class Userspage extends React.Component {
@@ -23,15 +24,27 @@ class Userspage extends React.Component {
     return this.state.users.map(user => {
       return (
         <>
-          <NavLink to="home">{user.username}</NavLink>
-
-          <Route path="/home" />
+          <div key={user.id}>
+            <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
+          </div>
         </>
       );
     });
   };
   render() {
-    return <div>{this.renderUsers()}</div>;
+    console.log(this.props);
+    return (
+      <div>
+        {this.renderUsers()}
+        <Route
+          exact
+          path="/users/:id"
+          render={props => (
+            <Userprofile {...props} id={props.match.params.id} />
+          )}
+        />
+      </div>
+    );
   }
 }
 
