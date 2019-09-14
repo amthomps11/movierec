@@ -13,8 +13,10 @@ class CommentCard extends React.Component {
   }
 
   componentDidMount = async () => {
-    let comments = await getComments(this.props.movie_id);
-    this.setState({ comments });
+    if (this.props.showComments) {
+      let comments = await getComments(this.props.movie_id);
+      this.setState({ comments });
+    }
   };
 
   handleInput = async e => {

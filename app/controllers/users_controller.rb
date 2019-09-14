@@ -21,6 +21,17 @@ class UsersController < ApplicationController
         end
 
     end
+
+    def unlike
+        @user = User.find(params[:id])
+        @movie = Movie.find(params[:movie_id])
+        @user.movies.delete(@movie)
+        render json: @user
+    end
+
+
+
+
     
     private
 

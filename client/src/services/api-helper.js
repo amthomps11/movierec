@@ -33,7 +33,6 @@ export const loginUser = async loginData => {
 export const createUser = async userData => {
   try {
     let resp = await apiClient.post(`/users`, userData);
-    console.log(`user with ${userData} created`);
     return resp;
   } catch (e) {
     throw e;
@@ -75,6 +74,18 @@ export const likeMovie = async movieId => {
     } else {
       console.log("you already like that movie!");
     }
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const unlikeMovie = async movieId => {
+  try {
+    let userId = localStorage.getItem("userId");
+    const response = await apiClient.put(
+      `/users/unlike?id=${userId}&movie_id=${movieId}`
+    );
+    return response;
   } catch (e) {
     throw e;
   }
@@ -143,7 +154,6 @@ export const updateComment = async (movie_id, comment_id) => {
 
 export const getUsers = async () => {
   try {
-    // let user_id = localStorage.getItem("userId");
     let users = await apiClient.get(`/users`);
     return users;
   } catch (e) {

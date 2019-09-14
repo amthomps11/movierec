@@ -27,6 +27,8 @@ class Userprofile extends React.Component {
           description={movie.description}
           imgUrl={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
           isAuthed={false}
+          likeable={true}
+          showComments={true}
         ></Moviecard>
       );
     });

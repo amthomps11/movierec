@@ -27,6 +27,9 @@ class Homepage extends React.Component {
           description={movie.description}
           imgUrl={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
           isAuthed={true}
+          likeable={false}
+          showComments={true}
+          resetFaves={this.getFaves}
         ></Moviecard>
       );
     });
