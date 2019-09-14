@@ -18,6 +18,7 @@ class Homepage extends React.Component {
   };
 
   renderFaves = () => {
+    let user_id = localStorage.getItem("userId");
     return this.state.faves.map(movie => {
       return (
         <Moviecard
@@ -30,6 +31,7 @@ class Homepage extends React.Component {
           likeable={false}
           showComments={true}
           resetFaves={this.getFaves}
+          user_id={user_id}
         ></Moviecard>
       );
     });

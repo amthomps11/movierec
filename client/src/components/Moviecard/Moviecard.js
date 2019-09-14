@@ -15,9 +15,13 @@ class Moviecard extends React.Component {
   }
 
   componentDidMount = async () => {
+    console.log(`moviecarduserid:${this.props.user_id}`);
+    console.log(`moviecardmovieid:${this.props.movie_id}`);
+    console.log(this.props.showComments);
+
     if (this.props.showComments) {
-      let comments = await getComments(this.props.movie_id);
-      this.setState({ comments });
+      let comments = await getComments(this.props.user_id, this.props.movie_id);
+      await this.setState({ comments });
     }
   };
 
@@ -65,6 +69,7 @@ class Moviecard extends React.Component {
         {this.props.showComments ? (
           <CommentCard
             movie_id={this.props.movie_id}
+            user_id={this.props.user_id}
             handleDelete={this.handleDeleteComment}
             comments={this.state.comments}
             isAuthed={this.props.isAuthed}

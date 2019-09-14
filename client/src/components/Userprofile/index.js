@@ -29,6 +29,7 @@ class Userprofile extends React.Component {
           isAuthed={false}
           likeable={true}
           showComments={true}
+          user_id={this.props.id}
         ></Moviecard>
       );
     });

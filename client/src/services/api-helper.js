@@ -103,9 +103,11 @@ export const writeComment = async commentData => {
   }
 };
 
-export const getComments = async movie_id => {
+export const getComments = async (user_id, movie_id) => {
+  console.log(`apiuserid${user_id}`);
+  console.log(`apimovieid${movie_id}`);
+  let tempId = localStorage.getItem("userId");
   try {
-    let user_id = localStorage.getItem("userId");
     const resp = await apiClient.get(
       `/movies/comments?movie_id=${movie_id}&user_id=${user_id}`
     );
@@ -117,7 +119,7 @@ export const getComments = async movie_id => {
 
 export const getComment = async (movie_id, comment_id) => {
   try {
-    let user_id = localStorage.getItem("userId");
+    let user_id = await localStorage.getItem("userId");
     const resp = await apiClient.get(
       `/movies/comment?movie_id=${movie_id}&user_id=${user_id}&comment_id=${comment_id}`
     );
