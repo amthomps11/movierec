@@ -7,6 +7,7 @@ import {
 import Moviecard from "../Moviecard/Moviecard";
 import FriendRequests from "../FriendRequests";
 import Friends from "../Friends";
+import ViewReccomendations from "../ViewRecommendations";
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class Homepage extends React.Component {
         {this.renderFaves()}
         <FriendRequests></FriendRequests>
         <Friends></Friends>
+        <ViewReccomendations></ViewReccomendations>
       </div>
     );
   }

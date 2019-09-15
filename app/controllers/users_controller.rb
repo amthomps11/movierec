@@ -39,15 +39,14 @@ class UsersController < ApplicationController
     def get_friend_requests
         @friends = Friend.joins("JOIN users ON users.id = friends.user2id").where("friends.user1id = #{params[:user_id]}").where("friends.confirmed=false")
         render json: @friends
-     
     end
 
 
+    def get_recs
+        @user = User.find(params[:id])
+        render json: @user, include: [:recommended_to, :recommended_from]
+    end
 
-
-
-
-    
     private
 
     def user_params
