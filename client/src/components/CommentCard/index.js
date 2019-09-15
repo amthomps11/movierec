@@ -13,8 +13,10 @@ class CommentCard extends React.Component {
   }
 
   componentDidMount = async () => {
-    let comments = await getComments(this.props.movie_id);
-    this.setState({ comments });
+    if (this.props.showComments) {
+      let comments = await getComments(this.props.user_id, this.props.movie_id);
+      this.setState({ comments });
+    }
   };
 
   handleInput = async e => {
@@ -31,7 +33,7 @@ class CommentCard extends React.Component {
       movie_id: this.props.movie_id.toString()
     };
     await writeComment(commentObj);
-    let comments = await getComments(this.props.movie_id);
+    let comments = await getComments(this.props.user_id, this.props.movie_id);
     this.setState({ comments });
   };
 
@@ -40,7 +42,7 @@ class CommentCard extends React.Component {
     let movie_id = parseInt(e.target.parentElement.getAttribute("movie_id"));
 
     await deleteComment(movie_id, id);
-    let comments = await getComments(this.props.movie_id);
+    let comments = await getComments(this.props.user_id, this.props.movie_id);
     this.setState({ comments });
   };
 
@@ -49,7 +51,7 @@ class CommentCard extends React.Component {
     let movie_id = parseInt(e.target.parentElement.getAttribute("movie_id"));
 
     await updateComment(movie_id, id);
-    let comments = await getComments(this.props.movie_id);
+    let comments = await getComments(this.props.user_id, this.props.movie_id);
     this.setState({ comments });
   };
 

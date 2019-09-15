@@ -21,6 +21,32 @@ class UsersController < ApplicationController
         end
 
     end
+
+    def unlike
+        @user = User.find(params[:id])
+        @movie = Movie.find(params[:movie_id])
+        @user.movies.delete(@movie)
+        render json: @user
+    end
+
+
+    def get_friends
+        @friends = Friend.joins("JOIN users ON users.id = friends.user2id").where("friends.user1id = #{params[:user_id]}").where("friends.confirmed=true")
+        render json: @friends
+     
+    end
+
+    def get_friend_requests
+        @friends = Friend.joins("JOIN users ON users.id = friends.user2id").where("friends.user1id = #{params[:user_id]}").where("friends.confirmed=false")
+        render json: @friends
+     
+    end
+
+
+
+
+
+
     
     private
 
