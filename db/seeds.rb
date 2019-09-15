@@ -11,7 +11,7 @@ user3 = User.create(username: "MissyThomps",password:"password",email:"missy@mai
 user4 = User.create(username: "DadThomps",password:"password",email:"dad@mail.com")
 
 
-# movie1 = Movie.create(title: "Back To The future",description:"marty goes back to the future")
+movie1 = Movie.create(title: "Back To The future",description:"marty goes back to the future")
 # movie2 = Movie.create(title: "Forest Gump", description:"Forrest gump Runs a lot and meets jenny")
 
 # Friend.create(user1id: 1,user2id: 2, confirmed:true )
@@ -22,3 +22,5 @@ user4 = User.create(username: "DadThomps",password:"password",email:"dad@mail.co
 
 # user1.movies.push(movie1)
 # user2.movies.push(movie2)
+
+recommendation = Recommendation.create(movie_id:1,recommended_from_id:1,recommended_to_id:2)

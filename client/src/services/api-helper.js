@@ -82,8 +82,6 @@ export const likeMovie = async movieId => {
 export const unlikeMovie = async movieId => {
   try {
     let userId = localStorage.getItem("userId");
-    console.log(`movieid${movieId}`);
-    console.log(`userid${userId}`);
 
     const response = await apiClient.put(
       `/users/unlike?id=${userId}&movie_id=${movieId}`

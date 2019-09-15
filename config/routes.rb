@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :movies
   resources :comments
   resources :friends
+  resources :recommendations
   
 
 

@@ -15,7 +15,6 @@ class Friends extends React.Component {
   getFriends = async () => {
     let user_id = localStorage.getItem("userId");
     let resp = await getFriends(user_id);
-    console.log(resp);
     let friendIds = resp.data;
     let friends = friendIds.map(async friendId => {
       let friend = await getUser(friendId.user2id);
