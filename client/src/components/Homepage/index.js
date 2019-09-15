@@ -14,8 +14,8 @@ class Homepage extends React.Component {
 
   componentDidMount = async () => {
     await this.getFaves();
-    await this.getFriends();
-    console.log(this.state);
+    // await this.getFriends();
+    // console.log(this.state);
   };
 
   getFriends = async () => {

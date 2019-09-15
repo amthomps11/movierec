@@ -163,9 +163,31 @@ export const getUsers = async () => {
   }
 };
 
+export const getUser = async user_id => {
+  try {
+    let user = await apiClient.get(`/users/${user_id}`).then(res => {
+      return res.data;
+    });
+    return user;
+  } catch (e) {
+    throw e;
+  }
+};
+
 export const getFriendIds = async user_id => {
   try {
     let friends = await apiClient.get(`/users/get_friends?user_id=${user_id}`);
+    return friends;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getFriendRequests = async user_id => {
+  try {
+    let friends = await apiClient.get(
+      `/users/get_friend_requests?user_id=${user_id}`
+    );
     return friends;
   } catch (e) {
     throw e;
@@ -176,6 +198,34 @@ export const getFriends = async friend_id => {
   try {
     let friends = await apiClient.get(`/users/${friend_id}`);
     return friends;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const sendFriendRequest = async friend_id => {
+  try {
+    let user_id = localStorage.getItem("userId");
+    let friendReq = await apiClient.post(`/friends/`, {
+      friend: { user1id: user_id, user2id: friend_id, confirmed: false }
+    });
+    return friendReq;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const acceptFriendRequest = async friend_id => {
+  try {
+    let user_id = localStorage.getItem("userId");
+    let friendReq = await apiClient.put(
+      `/friends/editspecificfriend?user1id=${user_id}&user2id=${friend_id}`,
+      {
+        friend: { user1id: user_id, user2id: friend_id, confirmed: true }
+      }
+    );
+    console.log("friend request accpeted!");
+    return friendReq;
   } catch (e) {
     throw e;
   }

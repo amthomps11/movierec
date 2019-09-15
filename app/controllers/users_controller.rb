@@ -31,12 +31,17 @@ class UsersController < ApplicationController
 
 
     def get_friends
-        # @user = User.find(params[:id])
-        # select * from users join friends on users.id = friends.user1id
-        @friends = Friend.joins("JOIN users ON users.id = friends.user2id").where("friends.user1id = #{params[:user_id]}")
+        @friends = Friend.joins("JOIN users ON users.id = friends.user2id").where("friends.user1id = #{params[:user_id]}").where("friends.confirmed=true")
         render json: @friends
      
     end
+
+    def get_friend_requests
+        @friends = Friend.joins("JOIN users ON users.id = friends.user2id").where("friends.user1id = #{params[:user_id]}").where("friends.confirmed=false")
+        render json: @friends
+     
+    end
+
 
 
 
