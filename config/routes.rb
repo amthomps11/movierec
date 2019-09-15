@@ -12,13 +12,16 @@ Rails.application.routes.draw do
   delete "/movies/comment_destroy", to: "movies#comment_destroy" 
   
   put "/movies/comment_update", to: "movies#comment_update"
-  put "users/unlike", to: "users#unlike"
+  put "/users/unlike", to: "users#unlike"
+
+  get "/friends/findspecificfriend", to: "friends#specificfriend"
+  put "/friends/editspecificfriend", to: "friends#editspecificfriend"
+
   
   resources :users
   resources :movies
-  resources :friends
   resources :comments
-
+  resources :friends
   
 
 
