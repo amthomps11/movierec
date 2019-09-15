@@ -30,6 +30,16 @@ class UsersController < ApplicationController
     end
 
 
+    def get_friends
+        # @user = User.find(params[:id])
+        # select * from users join friends on users.id = friends.user1id
+        @friends = Friend.joins("JOIN users ON users.id = friends.user2id").where("friends.user1id = #{params[:user_id]}")
+        render json: @friends
+     
+    end
+
+
+
 
 
     

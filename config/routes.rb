@@ -3,16 +3,16 @@ Rails.application.routes.draw do
   
   post '/auth/login', to: 'authentication#login'
   post '/likes/:user_id/:movie_id', to: 'likes#likes'
-  get '/movies/title', to: "movies#title"
   
+  get '/movies/title', to: "movies#title"
   get "/movies/comments", to: "movies#comments"
   get "/movies/comment", to: "movies#comment"
-
-  
   delete "/movies/comment_destroy", to: "movies#comment_destroy" 
-  
   put "/movies/comment_update", to: "movies#comment_update"
+
+
   put "/users/unlike", to: "users#unlike"
+  get "/users/get_friends", to:"users#get_friends"
 
   get "/friends/findspecificfriend", to: "friends#specificfriend"
   put "/friends/editspecificfriend", to: "friends#editspecificfriend"

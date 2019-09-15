@@ -1,15 +1,32 @@
 import React from "react";
-import { showFavesOfUser } from "../../services/api-helper";
+import {
+  showFavesOfUser,
+  getFriendIds,
+  getFriends
+} from "../../services/api-helper";
 import Moviecard from "../Moviecard/Moviecard";
 
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { faves: [] };
+    this.state = { faves: [], friends: [] };
   }
 
   componentDidMount = async () => {
     await this.getFaves();
+    await this.getFriends();
+    console.log(this.state);
+  };
+
+  getFriends = async () => {
+    let resp = await getFriendIds(localStorage.getItem("userId"));
+    let tempFriends = resp.data;
+    let friends = await tempFriends.map(async friend => {
+      let f = await getFriends(friend.user2id);
+      console.log(f.data);
+      return f.data;
+    });
+    await this.setState({ friends });
   };
 
   getFaves = async () => {

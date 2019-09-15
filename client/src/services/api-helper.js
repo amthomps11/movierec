@@ -162,3 +162,21 @@ export const getUsers = async () => {
     throw e;
   }
 };
+
+export const getFriendIds = async user_id => {
+  try {
+    let friends = await apiClient.get(`/users/get_friends?user_id=${user_id}`);
+    return friends;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getFriends = async friend_id => {
+  try {
+    let friends = await apiClient.get(`/users/${friend_id}`);
+    return friends;
+  } catch (e) {
+    throw e;
+  }
+};
