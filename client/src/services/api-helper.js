@@ -174,7 +174,7 @@ export const getUser = async user_id => {
   }
 };
 
-export const getFriendIds = async user_id => {
+export const getFriends = async user_id => {
   try {
     let friends = await apiClient.get(`/users/get_friends?user_id=${user_id}`);
     return friends;
@@ -194,7 +194,7 @@ export const getFriendRequests = async user_id => {
   }
 };
 
-export const getFriends = async friend_id => {
+export const getFriend = async friend_id => {
   try {
     let friends = await apiClient.get(`/users/${friend_id}`);
     return friends;
@@ -207,7 +207,7 @@ export const sendFriendRequest = async friend_id => {
   try {
     let user_id = localStorage.getItem("userId");
     let friendReq = await apiClient.post(`/friends/`, {
-      friend: { user1id: user_id, user2id: friend_id, confirmed: false }
+      friend: { user1id: friend_id, user2id: user_id, confirmed: false }
     });
     return friendReq;
   } catch (e) {

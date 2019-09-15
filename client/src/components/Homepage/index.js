@@ -5,6 +5,8 @@ import {
   getFriends
 } from "../../services/api-helper";
 import Moviecard from "../Moviecard/Moviecard";
+import FriendRequests from "../FriendRequests";
+import Friends from "../Friends";
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -14,19 +16,6 @@ class Homepage extends React.Component {
 
   componentDidMount = async () => {
     await this.getFaves();
-    // await this.getFriends();
-    // console.log(this.state);
-  };
-
-  getFriends = async () => {
-    let resp = await getFriendIds(localStorage.getItem("userId"));
-    let tempFriends = resp.data;
-    let friends = await tempFriends.map(async friend => {
-      let f = await getFriends(friend.user2id);
-      console.log(f.data);
-      return f.data;
-    });
-    await this.setState({ friends });
   };
 
   getFaves = async () => {
@@ -55,7 +44,13 @@ class Homepage extends React.Component {
   };
 
   render() {
-    return <div>{this.renderFaves()}</div>;
+    return (
+      <div>
+        {this.renderFaves()}
+        <FriendRequests></FriendRequests>
+        <Friends></Friends>
+      </div>
+    );
   }
 }
 
