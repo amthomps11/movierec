@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_195327) do
+ActiveRecord::Schema.define(version: 2019_09_15_203259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2019_09_12_195327) do
   end
 
   create_table "friends", force: :cascade do |t|
-    t.integer "user1Id"
-    t.integer "user2Id"
+    t.integer "user1id"
+    t.integer "user2id"
     t.boolean "confirmed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 2019_09_12_195327) do
     t.bigint "movie_id", null: false
   end
 
+  create_table "recommendations", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "recommended_to_id"
+    t.bigint "recommended_from_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_recommendations_on_movie_id"
+    t.index ["recommended_from_id"], name: "index_recommendations_on_recommended_from_id"
+    t.index ["recommended_to_id"], name: "index_recommendations_on_recommended_to_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -56,4 +67,5 @@ ActiveRecord::Schema.define(version: 2019_09_12_195327) do
 
   add_foreign_key "comments", "movies"
   add_foreign_key "comments", "users"
+  add_foreign_key "recommendations", "movies"
 end

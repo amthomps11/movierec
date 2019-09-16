@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie: one
+  recommended_to: one
+  recommended_from: one
+
+two:
+  movie: two
+  recommended_to: two
+  recommended_from: two

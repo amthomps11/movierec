@@ -24,9 +24,7 @@ class Searchpage extends React.Component {
     await this.setState({ movies: [...resp.data.results] });
   };
 
-  componentDidMount = async () => {
-    // await this.fetchData();
-  };
+  componentDidMount = async () => {};
 
   handleInput = e => {
     e.preventDefault();
@@ -47,6 +45,8 @@ class Searchpage extends React.Component {
           title={movie.title}
           description={movie.overview}
           imgUrl={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+          likeable={true}
+          showComments={false}
         ></Moviecard>
       );
     });

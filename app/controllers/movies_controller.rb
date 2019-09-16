@@ -49,6 +49,16 @@ class MoviesController < ApplicationController
         @comment.destroy(params[:comment_id])
     end
 
+    def comment_update
+        @comment = Comment.where("user_id = #{params[:user_id]} AND movie_id=#{params[:movie_id]} AND id=#{params[:comment_id]}", params[:user_id],params[:movie_id],params[:comment_id])
+        # @comment.update(comment_params)
+        if @comment.update(comment_params)
+            render json: @comment
+          else
+            render json: @comment.errors, status: :unprocessable_entity
+          end
+    end
+
 
    
 
@@ -59,6 +69,9 @@ class MoviesController < ApplicationController
         params.require(:movie).permit(:title, :description, :imgUrl)
     end
 
+    def comment_params
+        params.require(:comment).permit(:body)
+    end
     
 
 end

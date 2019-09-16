@@ -2,7 +2,8 @@ import React from "react";
 import {
   deleteComment,
   getComments,
-  writeComment
+  writeComment,
+  updateComment
 } from "../../services/api-helper";
 
 class CommentCard extends React.Component {
@@ -12,8 +13,10 @@ class CommentCard extends React.Component {
   }
 
   componentDidMount = async () => {
-    let comments = await getComments(this.props.movie_id);
-    this.setState({ comments });
+    if (this.props.showComments) {
+      let comments = await getComments(this.props.user_id, this.props.movie_id);
+      this.setState({ comments });
+    }
   };
 
   handleInput = async e => {
@@ -30,7 +33,7 @@ class CommentCard extends React.Component {
       movie_id: this.props.movie_id.toString()
     };
     await writeComment(commentObj);
-    let comments = await getComments(this.props.movie_id);
+    let comments = await getComments(this.props.user_id, this.props.movie_id);
     this.setState({ comments });
   };
 
@@ -39,7 +42,16 @@ class CommentCard extends React.Component {
     let movie_id = parseInt(e.target.parentElement.getAttribute("movie_id"));
 
     await deleteComment(movie_id, id);
-    let comments = await getComments(this.props.movie_id);
+    let comments = await getComments(this.props.user_id, this.props.movie_id);
+    this.setState({ comments });
+  };
+
+  handleEditcomment = async e => {
+    let id = parseInt(e.target.parentElement.getAttribute("id"));
+    let movie_id = parseInt(e.target.parentElement.getAttribute("movie_id"));
+
+    await updateComment(movie_id, id);
+    let comments = await getComments(this.props.user_id, this.props.movie_id);
     this.setState({ comments });
   };
 
@@ -48,8 +60,12 @@ class CommentCard extends React.Component {
       return (
         <div key={comment.id} id={comment.id} movie_id={this.props.movie_id}>
           {comment.body}
-          <button>Edit Comment</button>
-          <button onClick={this.handleDeleteComment}>Delete Comment</button>
+          {this.props.isAuthed ? (
+            <button onClick={this.handleEditcomment}>Edit Comment</button>
+          ) : null}
+          {this.props.isAuthed ? (
+            <button onClick={this.handleDeleteComment}>Delete Comment</button>
+          ) : null}
         </div>
       );
     });
@@ -58,10 +74,12 @@ class CommentCard extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleComment}>
-          <input onChange={this.handleInput}></input>
-          <button>Write Comment</button>
-        </form>
+        {this.props.isAuthed ? (
+          <form onSubmit={this.handleComment}>
+            <input onChange={this.handleInput}></input>
+            <button>Write Comment</button>
+          </form>
+        ) : null}
         {this.renderComments()}
       </div>
     );

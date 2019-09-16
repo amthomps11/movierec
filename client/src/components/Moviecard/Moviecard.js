@@ -3,7 +3,8 @@ import {
   createMovie,
   likeMovie,
   getMovieId,
-  getComments
+  getComments,
+  unlikeMovie
 } from "../../services/api-helper";
 import CommentCard from "../CommentCard";
 
@@ -14,8 +15,10 @@ class Moviecard extends React.Component {
   }
 
   componentDidMount = async () => {
-    let comments = await getComments(this.props.movie_id);
-    this.setState({ comments });
+    if (this.props.showComments) {
+      let comments = await getComments(this.props.user_id, this.props.movie_id);
+      await this.setState({ comments });
+    }
   };
 
   handleLike = async e => {
@@ -37,6 +40,12 @@ class Moviecard extends React.Component {
     await likeMovie(id);
   };
 
+  handleUnlike = async e => {
+    e.preventDefault();
+    await unlikeMovie(this.props.movie_id);
+    this.props.resetFaves();
+  };
+
   handleInput = async e => {
     e.preventDefault();
     let { value } = e.target;
@@ -48,12 +57,21 @@ class Moviecard extends React.Component {
       <div>
         <div>{this.props.title}</div>
         <div>{this.props.description}</div>
-        <button onClick={this.handleLike}>Like</button>
-        <CommentCard
-          movie_id={this.props.movie_id}
-          handleDelete={this.handleDeleteComment}
-          comments={this.state.comments}
-        ></CommentCard>
+        {this.props.likeable ? (
+          <button onClick={this.handleLike}>Like</button>
+        ) : (
+          <button onClick={this.handleUnlike}>Unlike</button>
+        )}
+        {this.props.showComments ? (
+          <CommentCard
+            movie_id={this.props.movie_id}
+            user_id={this.props.user_id}
+            handleDelete={this.handleDeleteComment}
+            comments={this.state.comments}
+            isAuthed={this.props.isAuthed}
+            showComments={this.props.showComments}
+          ></CommentCard>
+        ) : null}
       </div>
     );
   }

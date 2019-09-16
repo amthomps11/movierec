@@ -3,22 +3,23 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 user1 = User.create(username: "AlexThomps",password:"password",email:"alex@mail.com")
 user2 = User.create(username: "ChrisThomps",password:"password",email:"chris@mail.com")
+user3 = User.create(username: "MissyThomps",password:"password",email:"missy@mail.com")
+user4 = User.create(username: "DadThomps",password:"password",email:"dad@mail.com")
 
 
-movie1 = Movie.create(title: "Back To The future")
-movie2 = Movie.create(title: "Forest Gump")
+movie1 = Movie.create(title: "Back To The future",description:"marty goes back to the future")
+movie2 = Movie.create(title: "Forest Gump", description:"Forrest gump Runs a lot and meets jenny")
 
-Friend.create(user1Id: 1,user2Id: 2, confirmed:true )
+Friend.create(user1id: 1,user2id: 2, confirmed:true )
 
-comment1 = Comment.create(body:"I llove this movie!")
 
-user1.comments.push(comment1)
-movie1.comments.push(comment1)
+
 
 
 user1.movies.push(movie1)
 user2.movies.push(movie2)
+
+recommendation = Recommendation.create(movie_id:1,recommended_from_id:1,recommended_to_id:2)
+recommendation = Recommendation.create(movie_id:2,recommended_from_id:1,recommended_to_id:2)
