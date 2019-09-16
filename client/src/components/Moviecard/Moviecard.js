@@ -8,6 +8,9 @@ import {
 } from "../../services/api-helper";
 import CommentCard from "../CommentCard";
 
+//CSS
+import "./Moviecard.css";
+
 class Moviecard extends React.Component {
   constructor(props) {
     super(props);
@@ -53,14 +56,24 @@ class Moviecard extends React.Component {
   };
 
   render() {
+    console.log(this.props.imgUrl);
     return (
-      <div>
-        <div>{this.props.title}</div>
-        <div>{this.props.description}</div>
+      <div className="movie-card-wrapper">
+        <h2 className="movie-title">{this.props.title}</h2>
+        <div className="movie-content-wrapper">
+          <div className="movie-description">{this.props.description}</div>
+          <div>
+            <img clasName="movie-image" src={this.props.imgUrl}></img>
+          </div>
+        </div>
         {this.props.likeable ? (
-          <button onClick={this.handleLike}>Like</button>
+          <button className="like-button" onClick={this.handleLike}>
+            Like
+          </button>
         ) : (
-          <button onClick={this.handleUnlike}>Unlike</button>
+          <button className="dislike-button" onClick={this.handleUnlike}>
+            Unlike
+          </button>
         )}
         {this.props.showComments ? (
           <CommentCard

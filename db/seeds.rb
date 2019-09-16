@@ -20,8 +20,8 @@ Friend.create(user1id: 1,user2id: 4, confirmed:false )
 
 
 
-# user1.movies.push(movie1)
-# user2.movies.push(movie2)
+user1.movies.push(movie1)
+user2.movies.push(movie2)
 
 recommendation = Recommendation.create(movie_id:1,recommended_from_id:2,recommended_to_id:1)
 recommendation = Recommendation.create(movie_id:2,recommended_from_id:2,recommended_to_id:1)

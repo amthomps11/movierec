@@ -3,6 +3,9 @@ import { withRouter } from "react-router-dom";
 import decode from "jwt-decode";
 import { loginUser } from "../../services/api-helper";
 
+//CSS
+import "./login.css";
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +24,6 @@ class Login extends React.Component {
     decode(userData.data.token);
     localStorage.setItem("jwt", userData.data.token);
     localStorage.setItem("userId", userData.data.userId);
-
     this.handleLoginButton();
   };
 
@@ -38,25 +40,26 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="auth-container">
-        <h2>login</h2>
-        <hr />
-        <form onSubmit={this.handleLogin}>
-          <p>Username:</p>
-          <input
-            name="username"
-            onChange={this.handleInput}
-            value={this.state.username}
-          />
-          <p>Password:</p>
-          <input
-            name="password"
-            onChange={this.handleInput}
-            value={this.state.password}
-          />
-          <hr />
-          <button>Login</button>
-        </form>
+      <div className="login-component-wrapper">
+        <div className="login-container">
+          <h2>login</h2>
+          <form onSubmit={this.handleLogin}>
+            <p>Username:</p>
+            <input
+              name="username"
+              onChange={this.handleInput}
+              value={this.state.username}
+            />
+            <p>Password:</p>
+            <input
+              name="password"
+              onChange={this.handleInput}
+              value={this.state.password}
+            />
+            <hr />
+            <button className="login-button">Login</button>
+          </form>
+        </div>
       </div>
     );
   }

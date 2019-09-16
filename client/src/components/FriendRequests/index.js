@@ -53,7 +53,7 @@ class FriendRequests extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="friend-request-wrapper">
         FriendRequests
         {this.renderRequests()}
       </div>

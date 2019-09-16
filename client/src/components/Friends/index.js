@@ -38,7 +38,7 @@ class Friends extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div className="friends-wrapper">
         Friends
         {this.renderFriends()}
       </div>

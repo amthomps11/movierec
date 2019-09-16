@@ -9,6 +9,10 @@ import FriendRequests from "../FriendRequests";
 import Friends from "../Friends";
 import ViewReccomendations from "../ViewRecommendations";
 
+//Css
+import "../Moviecard/Moviecard.css";
+import "./Homepage.css";
+
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
@@ -32,8 +36,8 @@ class Homepage extends React.Component {
           key={movie.id}
           movie_id={movie.id}
           title={movie.title}
-          description={movie.description}
-          imgUrl={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+          description={`${movie.description.substring(0, 100)}...`}
+          imgUrl={movie.imgUrl}
           isAuthed={true}
           likeable={false}
           showComments={true}
@@ -46,10 +50,12 @@ class Homepage extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.renderFaves()}
-        <FriendRequests></FriendRequests>
-        <Friends></Friends>
+      <div className="own-profile-wrapper">
+        <div className="friend-info-wrapper">
+          <FriendRequests></FriendRequests>
+          <Friends></Friends>
+        </div>
+        <div className="movies-wrapper">{this.renderFaves()}</div>
         <ViewReccomendations></ViewReccomendations>
       </div>
     );
