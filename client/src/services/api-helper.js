@@ -57,6 +57,15 @@ export const getMovieId = async title => {
   }
 };
 
+export const getMovie = async movie_id => {
+  try {
+    const response = await apiClient.get(`/movies/${movie_id}`);
+    return response.data;
+  } catch (e) {
+    return "nomovie";
+  }
+};
+
 export const likeMovie = async movieId => {
   try {
     let userId = localStorage.getItem("userId");
@@ -82,8 +91,6 @@ export const likeMovie = async movieId => {
 export const unlikeMovie = async movieId => {
   try {
     let userId = localStorage.getItem("userId");
-    console.log(`movieid${movieId}`);
-    console.log(`userid${userId}`);
 
     const response = await apiClient.put(
       `/users/unlike?id=${userId}&movie_id=${movieId}`
@@ -226,6 +233,30 @@ export const acceptFriendRequest = async friend_id => {
     );
     console.log("friend request accpeted!");
     return friendReq;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getRecommendationsFromFriend = async (user_id, friend_id) => {
+  try {
+    let user_id = localStorage.getItem("userId");
+    let recs = await apiClient.get(
+      `/recomendations/get_specific_rec?user_id=${user_id}&friend_id=${friend_id}`
+    );
+    return recs;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getAllRecommendations = async user_id => {
+  try {
+    let user_id = localStorage.getItem("userId");
+    let recs = await apiClient.get(
+      `/recommendations/get_all_recs?user_id=${user_id}`
+    );
+    return recs.data;
   } catch (e) {
     throw e;
   }

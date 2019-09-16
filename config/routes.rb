@@ -13,17 +13,23 @@ Rails.application.routes.draw do
 
   put "/users/unlike", to: "users#unlike"
   get "/users/get_friends", to:"users#get_friends"
+  get "/users/get_recs", to:"users#get_recs"
   get "/users/get_friend_requests", to:"users#get_friend_requests"
 
 
   get "/friends/findspecificfriend", to: "friends#specificfriend"
   put "/friends/editspecificfriend", to: "friends#editspecificfriend"
 
+
+  get "/recommendations/get_specific_rec", to: "recommendations#get_specific_rec"
+  get "/recommendations/get_all_recs", to: "recommendations#get_all_recs"
+
   
   resources :users
   resources :movies
   resources :comments
   resources :friends
+  resources :recommendations
   
 
 
