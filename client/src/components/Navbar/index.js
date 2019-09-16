@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, NavLink, Switch } from "react-router-dom";
+import { Route, NavLink, Switch, withRouter } from "react-router-dom";
 
 //Components
 import Homepage from "../Homepage";
@@ -15,6 +15,17 @@ class NavBar extends React.Component {
     this.state = {};
   }
 
+  handleLogoutButton = () => {
+    this.props.history.push("/login");
+  };
+
+  handleLogout = async e => {
+    e.preventDefault();
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("userId");
+    this.handleLogoutButton();
+  };
+
   render() {
     return (
       <>
@@ -24,6 +35,7 @@ class NavBar extends React.Component {
           <NavLink to="/register">Register</NavLink>
           <NavLink to="/search">Search</NavLink>
           <NavLink to="/users">Users</NavLink>
+          <button onClick={this.handleLogout}>SignOut</button>
         </ul>
         <Switch>
           <Route path="/home" component={Homepage} />
@@ -44,4 +56,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);
