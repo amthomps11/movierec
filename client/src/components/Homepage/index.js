@@ -16,10 +16,15 @@ import "./Homepage.css";
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { faves: [], friends: [] };
+    this.state = { loggedIn: false, faves: [], friends: [] };
   }
 
   componentDidMount = async () => {
+    if (localStorage.getItem("userId") == null) {
+      this.setState({ loggedIn: false });
+    } else {
+      this.setState({ loggedIn: true });
+    }
     await this.getFaves();
   };
 
@@ -52,11 +57,15 @@ class Homepage extends React.Component {
     return (
       <div className="own-profile-wrapper">
         <div className="friend-info-wrapper">
-          <Friends></Friends>
-          <FriendRequests></FriendRequests>
+          {this.state.loggedIn ? (
+            <>
+              <Friends></Friends>
+              <FriendRequests></FriendRequests>
+            </>
+          ) : null}
         </div>
         <div className="movies-wrapper">{this.renderFaves()}</div>
-        <ViewReccomendations></ViewReccomendations>
+        {/* <ViewReccomendations></ViewReccomendations> */}
       </div>
     );
   }

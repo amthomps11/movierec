@@ -36,14 +36,7 @@ class Userprofile extends React.Component {
   };
 
   render() {
-    return (
-      <div>
-        <div>
-          <button>recommend a movie</button>
-        </div>
-        {this.renderFaves()}
-      </div>
-    );
+    return <div>{this.renderFaves()}</div>;
   }
 }
 
