@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { getUsers, sendFriendRequest } from "../../services/api-helper";
 
+import "./Userspage.css";
 class Userspage extends React.Component {
   constructor(props) {
     super(props);
@@ -26,8 +27,8 @@ class Userspage extends React.Component {
     return this.state.users.map(user => {
       if (user.id !== parseInt(localStorage.getItem("userId")))
         return (
-          <div key={user.id}>
-            <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
+          <div className="user-wrapper" key={user.id}>
+            <h2>{user.username}</h2>
             <button
               onClick={() => {
                 this.handleAddFriend(user.id);
@@ -40,7 +41,7 @@ class Userspage extends React.Component {
     });
   };
   render() {
-    return <div>{this.renderUsers()}</div>;
+    return <div className="userlist-wrapper">{this.renderUsers()}</div>;
   }
 }
 

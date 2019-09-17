@@ -56,7 +56,6 @@ class Moviecard extends React.Component {
   };
 
   render() {
-    console.log(this.props.imgUrl);
     return (
       <div className="movie-card-wrapper">
         <h2 className="movie-title">{this.props.title}</h2>

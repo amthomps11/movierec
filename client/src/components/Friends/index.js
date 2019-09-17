@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { getUser, getFriends } from "../../services/api-helper";
 
+import "./Friends.css";
+
 class Friends extends React.Component {
   constructor(props) {
     super(props);
@@ -30,8 +32,10 @@ class Friends extends React.Component {
   renderFriends = () => {
     return this.state.friends.map(friend => {
       return (
-        <div key={friend.id}>
-          <NavLink to={`/users/${friend.id}`}>{friend.username}</NavLink>
+        <div className="friend-div" key={friend.id}>
+          <NavLink className="friend-link" to={`/users/${friend.id}`}>
+            {friend.username}
+          </NavLink>
         </div>
       );
     });
@@ -39,7 +43,7 @@ class Friends extends React.Component {
   render() {
     return (
       <div className="friends-wrapper">
-        Friends
+        <h2>Friends</h2>
         {this.renderFriends()}
       </div>
     );

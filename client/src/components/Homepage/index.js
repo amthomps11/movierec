@@ -52,8 +52,8 @@ class Homepage extends React.Component {
     return (
       <div className="own-profile-wrapper">
         <div className="friend-info-wrapper">
-          <FriendRequests></FriendRequests>
           <Friends></Friends>
+          <FriendRequests></FriendRequests>
         </div>
         <div className="movies-wrapper">{this.renderFaves()}</div>
         <ViewReccomendations></ViewReccomendations>
