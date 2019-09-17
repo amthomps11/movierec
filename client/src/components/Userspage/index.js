@@ -34,7 +34,7 @@ class Userspage extends React.Component {
                 this.handleAddFriend(user.id);
               }}
             >
-              Add Friend
+              Invite To Follow You
             </button>
           </div>
         );

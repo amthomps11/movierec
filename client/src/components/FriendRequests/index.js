@@ -48,7 +48,7 @@ class FriendRequests extends React.Component {
               this.acceptRequest(friend.id);
             }}
           >
-            Accept Request
+            User Invites You To Follow Them
           </button>
         </div>
       );
@@ -58,7 +58,7 @@ class FriendRequests extends React.Component {
   render() {
     return (
       <div className="friend-request-wrapper">
-        <h2>Friend Requests</h2>
+        <h2>Followee Requests</h2>
         {this.renderRequests()}
       </div>
     );

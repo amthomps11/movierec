@@ -2,6 +2,7 @@ import React from "react";
 import { showFavesOfUser } from "../../services/api-helper";
 import Moviecard from "../Moviecard/Moviecard";
 
+import "./Userprofile.css";
 class Userprofile extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +37,7 @@ class Userprofile extends React.Component {
   };
 
   render() {
-    return <div>{this.renderFaves()}</div>;
+    return <div className="userProfile">{this.renderFaves()}</div>;
   }
 }
 
