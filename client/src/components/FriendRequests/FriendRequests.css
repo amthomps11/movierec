@@ -1,0 +1,65 @@
+.friends-request-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.friends-requests-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.friend-request-div {
+  margin: 5px auto;
+  width: 60%;
+  height: 30px;
+  border-left: solid white 3px;
+  border-right: solid white 3px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 2px 20px -4px rgba(0, 0, 0, 0.51);
+  -moz-box-shadow: 0px 2px 20px -4px rgba(0, 0, 0, 0.51);
+  box-shadow: 0px 2px 20px -4px rgba(0, 0, 0, 0.51);
+}
+.friend-link {
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 5px;
+}
+
+.request-button {
+  display: inline-block;
+  border: none;
+  width: 60%;
+  margin: 0;
+  height: 20%;
+  text-decoration: none;
+  background: red;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.request-button:hover {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+.friend-div:hover {
+  border-left: solid red 3px;
+  border-right: solid red 3px;
+}

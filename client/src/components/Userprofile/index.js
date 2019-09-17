@@ -25,7 +25,7 @@ class Userprofile extends React.Component {
           movie_id={movie.id}
           title={movie.title}
           description={movie.description}
-          imgUrl={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+          imgUrl={movie.imgUrl}
           isAuthed={false}
           likeable={true}
           showComments={true}
@@ -36,14 +36,7 @@ class Userprofile extends React.Component {
   };
 
   render() {
-    return (
-      <div>
-        <div>
-          <button>recommend a movie</button>
-        </div>
-        {this.renderFaves()}
-      </div>
-    );
+    return <div>{this.renderFaves()}</div>;
   }
 }
 

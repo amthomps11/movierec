@@ -6,10 +6,17 @@ import {
   updateComment
 } from "../../services/api-helper";
 
+import "./CommentCard.css";
+
 class CommentCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { input: "", comments: [] };
+    this.state = {
+      input: "",
+      commentInput: false,
+      editInput: false,
+      comments: []
+    };
   }
 
   componentDidMount = async () => {
@@ -34,7 +41,7 @@ class CommentCard extends React.Component {
     };
     await writeComment(commentObj);
     let comments = await getComments(this.props.user_id, this.props.movie_id);
-    this.setState({ comments });
+    this.setState({ comments, commentInput: false });
   };
 
   handleDeleteComment = async e => {
@@ -46,25 +53,59 @@ class CommentCard extends React.Component {
     this.setState({ comments });
   };
 
+  handleCommentInput = async e => {
+    this.setState({ commentInput: true });
+  };
+
   handleEditcomment = async e => {
+    e.preventDefault();
+    let text = e.target.parentElement.children[0].value;
     let id = parseInt(e.target.parentElement.getAttribute("id"));
     let movie_id = parseInt(e.target.parentElement.getAttribute("movie_id"));
-
-    await updateComment(movie_id, id);
+    await updateComment(movie_id, id, text);
     let comments = await getComments(this.props.user_id, this.props.movie_id);
-    this.setState({ comments });
+    this.setState({ comments, editInput: false });
+  };
+
+  hanldeTriggerEdit = e => {
+    this.setState({ editInput: true });
+  };
+
+  handleCommentInputChange = e => {
+    e.preventDefault();
+    return e.target.value;
   };
 
   renderComments = () => {
     return this.state.comments.map(comment => {
       return (
-        <div key={comment.id} id={comment.id} movie_id={this.props.movie_id}>
-          {comment.body}
-          {this.props.isAuthed ? (
-            <button onClick={this.handleEditcomment}>Edit Comment</button>
+        <div
+          className="comment-wrapper"
+          key={comment.id}
+          id={comment.id}
+          movie_id={this.props.movie_id}
+        >
+          <div className="comment-body">{comment.body}</div>
+          {!this.state.editInput && this.props.isAuthed ? (
+            <button className="edit-comment" onClick={this.hanldeTriggerEdit}>
+              Edit
+            </button>
+          ) : null}
+          {this.props.isAuthed && this.state.editInput ? (
+            <form id={comment.id} movie_id={this.props.movie_id}>
+              <input></input>
+              <button className="edit-comment" onClick={this.handleEditcomment}>
+                Edit
+              </button>
+            </form>
           ) : null}
           {this.props.isAuthed ? (
-            <button onClick={this.handleDeleteComment}>Delete Comment</button>
+            <button
+              className="delete-comment"
+              onClick={this.handleDeleteComment}
+            >
+              x
+            </button>
           ) : null}
         </div>
       );
@@ -73,13 +114,23 @@ class CommentCard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="entire-comment-wrapper">
         {this.props.isAuthed ? (
+          <button
+            className="add-comment-trigger"
+            onClick={this.handleCommentInput}
+          >
+            Add Comment
+          </button>
+        ) : null}
+
+        {this.props.isAuthed && this.state.commentInput ? (
           <form onSubmit={this.handleComment}>
             <input onChange={this.handleInput}></input>
-            <button>Write Comment</button>
+            <button onClick={this.handleCommentInput}>Write Comment</button>
           </form>
         ) : null}
+
         {this.renderComments()}
       </div>
     );

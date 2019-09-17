@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Moviecard from "../Moviecard/Moviecard";
+import "./Searchpage.css";
 require("dotenv").config();
 
 //components
@@ -54,10 +55,13 @@ class Searchpage extends React.Component {
 
   render() {
     return (
-      <div>
-        <input onChange={this.handleInput}></input>
-        <button onClick={this.handleSearch}>Search</button>
-        Movies
+      <div className="search-wrapper">
+        <div className="search-bar-wrapper">
+          <input className="search-input" onChange={this.handleInput}></input>
+          <button className="search-button" onClick={this.handleSearch}>
+            Search
+          </button>
+        </div>
         {this.state.movies !== [] ? this.renderMovies() : null}
       </div>
     );
