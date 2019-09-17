@@ -1,0 +1,10 @@
+.own-profile-wrapper {
+  display: flex;
+  position: relative;
+}
+
+.friend-info-wrapper {
+  position: fixed;
+  width: 20%;
+  height: 100%;
+}

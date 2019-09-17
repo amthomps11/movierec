@@ -1,0 +1,98 @@
+.movies-wrapper {
+  font-family: "Montserrat", sans-serif;
+
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  /* position: relative; */
+  top: 42px;
+}
+
+.movie-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 5px;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 40px -22px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 40px -22px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 40px -22px rgba(0, 0, 0, 0.75);
+}
+
+.movie-content-wrapper {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie-title {
+  background-color: red;
+  color: white;
+  margin: 0px;
+  border-radius: 5px 5px 0 0;
+}
+
+.movie-description {
+  flex-basis: 40%;
+}
+
+.like-button {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: #0069ed;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.like-button:hover,
+.like-button:focus {
+  background: #04408a;
+}
+
+.like-button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+.like-button:active {
+  transform: scale(0.99);
+}
+
+.dislike-button {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: red;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.dislike-button:hover,
+.dislike-button:focus {
+  background: red;
+}
+
+.dislike-button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+.dislike-button:active {
+  transform: scale(0.99);
+}

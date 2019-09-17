@@ -13,6 +13,8 @@ movie1 = Movie.create(title: "Back To The future",description:"marty goes back t
 movie2 = Movie.create(title: "Forest Gump", description:"Forrest gump Runs a lot and meets jenny")
 
 Friend.create(user1id: 1,user2id: 2, confirmed:true )
+Friend.create(user1id: 1,user2id: 3, confirmed:true )
+Friend.create(user1id: 1,user2id: 4, confirmed:false )
 
 
 
@@ -21,5 +23,5 @@ Friend.create(user1id: 1,user2id: 2, confirmed:true )
 user1.movies.push(movie1)
 user2.movies.push(movie2)
 
-recommendation = Recommendation.create(movie_id:1,recommended_from_id:1,recommended_to_id:2)
-recommendation = Recommendation.create(movie_id:2,recommended_from_id:1,recommended_to_id:2)
+recommendation = Recommendation.create(movie_id:1,recommended_from_id:2,recommended_to_id:1)
+recommendation = Recommendation.create(movie_id:2,recommended_from_id:2,recommended_to_id:1)

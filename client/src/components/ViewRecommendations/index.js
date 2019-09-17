@@ -34,8 +34,8 @@ class ViewRecomendations extends React.Component {
           key={movie.id}
           movie_id={movie.id}
           title={movie.title}
-          description={movie.description}
-          imgUrl={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+          description={movie.description.substring(0, 100)}
+          imgUrl={movie.imgUrl}
           isAuthed={false}
           likeable={true}
           // showComments={true}
@@ -48,7 +48,7 @@ class ViewRecomendations extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="recommendation-wrapper">
         The Recs
         {this.renderRecs()}
       </div>

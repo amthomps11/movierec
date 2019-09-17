@@ -148,12 +148,12 @@ export const deleteComment = async (movie_id, comment_id) => {
   }
 };
 
-export const updateComment = async (movie_id, comment_id) => {
+export const updateComment = async (movie_id, comment_id, text) => {
   try {
     let user_id = localStorage.getItem("userId");
     await apiClient.put(
       `/movies/comment_update?movie_id=${movie_id}&user_id=${user_id}&comment_id=${comment_id}`,
-      { comment: { body: "greatMovie" } }
+      { comment: { body: `${text}` } }
     );
     return "comment edited";
   } catch (e) {

@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { createUser } from "../../services/api-helper";
 
+import "./Register.css";
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -32,31 +33,33 @@ class Register extends React.Component {
 
   render() {
     return (
-      <div className="register-container">
-        <h2>Register</h2>
-        <hr />
-        <form onSubmit={this.handleRegister}>
-          <p>Username:</p>
-          <input
-            name="username"
-            onChange={this.handleInput}
-            value={this.state.username}
-          />
-          <p>Email:</p>
-          <input
-            name="email"
-            onChange={this.handleInput}
-            value={this.state.email}
-          />
-          <p>Password:</p>
-          <input
-            name="password"
-            onChange={this.handleInput}
-            value={this.state.password}
-          />
+      <div className="register-component-wrapper">
+        <div className="register-container">
+          <h2>Register</h2>
           <hr />
-          <button>Register</button>
-        </form>
+          <form onSubmit={this.handleRegister}>
+            <p>Username:</p>
+            <input
+              name="username"
+              onChange={this.handleInput}
+              value={this.state.username}
+            />
+            <p>Email:</p>
+            <input
+              name="email"
+              onChange={this.handleInput}
+              value={this.state.email}
+            />
+            <p>Password:</p>
+            <input
+              name="password"
+              onChange={this.handleInput}
+              value={this.state.password}
+            />
+            <hr />
+            <button className="register-button">Register</button>
+          </form>
+        </div>
       </div>
     );
   }

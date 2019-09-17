@@ -9,13 +9,22 @@ import FriendRequests from "../FriendRequests";
 import Friends from "../Friends";
 import ViewReccomendations from "../ViewRecommendations";
 
+//Css
+import "../Moviecard/Moviecard.css";
+import "./Homepage.css";
+
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { faves: [], friends: [] };
+    this.state = { loggedIn: false, faves: [], friends: [] };
   }
 
   componentDidMount = async () => {
+    if (localStorage.getItem("userId") == null) {
+      this.setState({ loggedIn: false });
+    } else {
+      this.setState({ loggedIn: true });
+    }
     await this.getFaves();
   };
 
@@ -32,8 +41,8 @@ class Homepage extends React.Component {
           key={movie.id}
           movie_id={movie.id}
           title={movie.title}
-          description={movie.description}
-          imgUrl={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+          description={`${movie.description.substring(0, 100)}...`}
+          imgUrl={movie.imgUrl}
           isAuthed={true}
           likeable={false}
           showComments={true}
@@ -46,11 +55,17 @@ class Homepage extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.renderFaves()}
-        <FriendRequests></FriendRequests>
-        <Friends></Friends>
-        <ViewReccomendations></ViewReccomendations>
+      <div className="own-profile-wrapper">
+        <div className="friend-info-wrapper">
+          {this.state.loggedIn ? (
+            <>
+              <Friends></Friends>
+              <FriendRequests></FriendRequests>
+            </>
+          ) : null}
+        </div>
+        <div className="movies-wrapper">{this.renderFaves()}</div>
+        {/* <ViewReccomendations></ViewReccomendations> */}
       </div>
     );
   }

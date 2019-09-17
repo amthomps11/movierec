@@ -5,6 +5,8 @@ import {
   acceptFriendRequest
 } from "../../services/api-helper";
 
+import "./FriendRequests.css";
+
 class FriendRequests extends React.Component {
   constructor(props) {
     super(props);
@@ -32,14 +34,16 @@ class FriendRequests extends React.Component {
 
   acceptRequest = async friend_id => {
     await acceptFriendRequest(friend_id);
+    await this.getRequests();
   };
 
   renderRequests = () => {
     return this.state.friends.map(friend => {
       return (
-        <div key={friend.id}>
-          <div>{friend.username}</div>
+        <div className="friend-requests-wrapper" key={friend.id}>
+          <div className="friend-request-div">{friend.username}</div>
           <button
+            className="request-button"
             onClick={() => {
               this.acceptRequest(friend.id);
             }}
@@ -53,8 +57,8 @@ class FriendRequests extends React.Component {
 
   render() {
     return (
-      <div>
-        FriendRequests
+      <div className="friend-request-wrapper">
+        <h2>Friend Requests</h2>
         {this.renderRequests()}
       </div>
     );
