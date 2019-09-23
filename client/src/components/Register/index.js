@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { createUser } from "../../services/api-helper";
+import { createUser, loginUser } from "../../services/api-helper";
+import decode from "jwt-decode";
 
 import "./Register.css";
 class Register extends React.Component {
@@ -20,6 +21,15 @@ class Register extends React.Component {
   handleRegister = async e => {
     e.preventDefault();
     await createUser({ user: this.state });
+    let user = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    const userData = await loginUser(user);
+    decode(userData.data.token);
+    localStorage.setItem("jwt", userData.data.token);
+    localStorage.setItem("userId", userData.data.userId);
+    this.handleRegisterButton();
   };
 
   handleInput = async e => {

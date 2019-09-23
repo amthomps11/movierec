@@ -1,8 +1,9 @@
 .userlist-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   background-color: #fefbfb;
   height: 100%;
 }
